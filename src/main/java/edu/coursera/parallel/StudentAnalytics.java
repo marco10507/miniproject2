@@ -94,7 +94,6 @@ public final class StudentAnalytics {
      * @return Most common first name of inactive students
      */
     public String mostCommonFirstNameOfInactiveStudentsParallelStream(final Student[] studentArray) {
-//        return Arrays.stream(studentArray).filter(s -> !s.checkIsCurrent()).parallel().collect(Collectors.groupingBy(Student::getFirstName, Collectors.counting())).entrySet().stream().parallel().max(Map.Entry.comparingByValue()).get().getKey();
         return Arrays.stream(studentArray).filter(s -> !s.checkIsCurrent()).parallel().collect(Collectors.groupingBy(Student::getFirstName, Collectors.counting())).entrySet().stream().parallel().max((m1, m2) -> m1.getValue().compareTo(m2.getValue())).get().getKey();
     }
 
